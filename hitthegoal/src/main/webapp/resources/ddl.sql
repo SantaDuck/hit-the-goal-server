@@ -64,7 +64,7 @@ CREATE TABLE penalty (
 CREATE TABLE approval (
 	penalty_id INT NOT NULL,
     member_id INT NOT NULL,
-    create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
+    create_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY(penalty_id, member_id),
     FOREIGN KEY(penalty_id) REFERENCES penalty(id),
     FOREIGN KEY(member_id) REFERENCES member(id)
