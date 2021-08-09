@@ -28,8 +28,13 @@ public class GoalDao {
 				.usingGeneratedKeyColumns("id");
 	}
 	
-	// 모든 Goal 가져오기
-	public List<Goal> getAll() {
+	// READ
+	public List<Goal> getGoals(int teamId, int memberId) {
+		// 모든 Goal 가져오기
+		if(teamId == 0 && memberId == 0) {
+			return jdbc.query(SELECT_ALL_GOALS, rowMapper);
+		}
+		
 		return jdbc.query(SELECT_ALL_GOALS, rowMapper);
 	}
 }

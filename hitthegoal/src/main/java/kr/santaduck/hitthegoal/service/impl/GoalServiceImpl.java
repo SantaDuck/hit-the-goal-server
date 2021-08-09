@@ -25,7 +25,7 @@ public class GoalServiceImpl implements GoalService {
 	// Read
 	@Override
 	public List<Goal> getGoals(int teamId, int memberId) {
-		return goalDao.getAll();
+		return goalDao.getGoals(teamId, memberId);
 	}
 
 	@Override
