@@ -1,11 +1,14 @@
 package kr.santaduck.hitthegoal.controller;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,5 +35,19 @@ public class ApiController {
 		map.put("goals", goals);
 		
 		return map;
+	}
+	
+	@GetMapping(path = "/goals/{id}")
+	public Map<String, Object> getGoal(@PathVariable("id") int id) {
+		try {
+			Goal goal = goalService.getGoal(id);
+			
+			Map<String, Object> map = new HashMap<>();
+			map.put("goal", goal);
+			
+			return map;
+		} catch (EmptyResultDataAccessException e) {
+			return Collections.emptyMap();
+		}
 	}
 }

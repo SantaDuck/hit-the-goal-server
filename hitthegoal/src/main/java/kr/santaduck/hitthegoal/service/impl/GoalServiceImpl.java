@@ -30,8 +30,7 @@ public class GoalServiceImpl implements GoalService {
 
 	@Override
 	public Goal getGoal(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return goalDao.getGoal(id);
 	}
 
 	

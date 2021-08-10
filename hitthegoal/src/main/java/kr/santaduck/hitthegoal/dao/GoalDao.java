@@ -33,13 +33,11 @@ public class GoalDao {
 	public List<Goal> getGoals(int teamId, int memberId) {
 		// 모든 Goal 가져오기
 		if(teamId == 0 && memberId == 0) {
-			System.out.println("1");
 			return jdbc.query(SELECT_ALL_GOALS, rowMapper);
 		}
 		
 		// teamId만 주어짐
 		else if(teamId != 0 && memberId == 0) {
-			System.out.println("2");
 			Map<String, Integer> params = new HashMap<>();
 			params.put("team_id", teamId);
 			return jdbc.query(SELECT_GOAL_BY_TEAM_ID, params, rowMapper);
@@ -47,7 +45,6 @@ public class GoalDao {
 		
 		// memberId 주어짐
 		else if(teamId == 0 && memberId != 0) {
-			System.out.println("3");
 			Map<String, Integer> params = new HashMap<>();
 			params.put("member_id", memberId);
 			return jdbc.query(SELECT_GOAL_BY_MEMBER_ID, params, rowMapper);
@@ -55,7 +52,6 @@ public class GoalDao {
 		
 		// 둘다 주어짐
 		else if(teamId != 0 && memberId != 0) {
-			System.out.println("4");
 			Map<String, Integer> params = new HashMap<>();
 			params.put("team_id", teamId);
 			params.put("member_id", memberId);
@@ -63,5 +59,11 @@ public class GoalDao {
 		}
 		
 		return jdbc.query(SELECT_ALL_GOALS, rowMapper);
+	}
+	
+	public Goal getGoal(int id) {
+		Map<String, Integer> params = new HashMap<>();
+		params.put("id", id);
+		return jdbc.queryForObject(SELECT_GOAL_BY_ID, params, rowMapper);
 	}
 }
