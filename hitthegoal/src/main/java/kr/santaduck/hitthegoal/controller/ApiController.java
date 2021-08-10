@@ -30,7 +30,6 @@ public class ApiController {
 		// 반환할 객체 만들기
 		Map<String, Object> map = new HashMap<>();
 		map.put("goals", goals);
-		System.out.println("ㅎㅇ");
 		
 		return map;
 	}

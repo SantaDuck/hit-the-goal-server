@@ -18,6 +18,17 @@ public class GoalDaoSqls {
 			"SELECT id, team_id, term, member_id, contents, is_achived, create_date "
 			+ "FROM goal "
 			+ "WHERE team_id=:team_id";
+
+	public static final String SELECT_GOAL_BY_MEMBER_ID =
+			"SELECT id, team_id, term, member_id, contents, is_achived, create_date "
+			+ "FROM goal "
+			+ "WHERE member_id=:member_id";
+	
+	public static final String SELECT_GOAL_BY_TEAM_ID_AND_MEMBER_ID =
+			"SELECT id, team_id, term, member_id, contents, is_achived, create_date "
+			+ "FROM goal "
+			+ "WHERE team_id=:team_id AND member_id=:member_id";
+
 	
 	// Update
 	

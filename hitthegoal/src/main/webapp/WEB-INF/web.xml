@@ -39,7 +39,7 @@
 		<!-- DispatcherServlet이 실행될 때 WebMvcContextConfiguration에 들어있는 설정을 참고하라고 알려주는 부분 -->		
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>kr.santaduck.config.WebMvcContextConfiguration
+			<param-value>kr.santaduck.hitthegoal.config.WebMvcContextConfiguration
 			</param-value>
 		</init-param>
 		
