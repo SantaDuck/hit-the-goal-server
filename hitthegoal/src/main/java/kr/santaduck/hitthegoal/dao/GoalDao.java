@@ -8,7 +8,9 @@ import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
@@ -29,7 +31,13 @@ public class GoalDao {
 				.usingGeneratedKeyColumns("id");
 	}
 	
-	// READ
+	// Create
+	public Integer insertGoal(Goal goal) {
+		SqlParameterSource params = new BeanPropertySqlParameterSource(goal);
+		return insertAction.executeAndReturnKey(params).intValue();
+	}
+	
+	// Read
 	public List<Goal> getGoals(int teamId, int memberId) {
 		// 모든 Goal 가져오기
 		if(teamId == 0 && memberId == 0) {

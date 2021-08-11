@@ -1,9 +1,11 @@
 package kr.santaduck.hitthegoal.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.santaduck.hitthegoal.dao.GoalDao;
 import kr.santaduck.hitthegoal.dto.Goal;
@@ -16,19 +18,25 @@ public class GoalServiceImpl implements GoalService {
 	
 	// Create
 	@Override
+	@Transactional(readOnly = false)
 	public Goal addGoal(Goal goal) {
-		// TODO Auto-generated method stub
-		return null;
+		goal.setCreateDate(new Date());
+		int id = goalDao.insertGoal(goal);
+		goal.setId(id);
+		
+		return goal;
 	}
 	
 
 	// Read
 	@Override
+	@Transactional
 	public List<Goal> getGoals(int teamId, int memberId) {
 		return goalDao.getGoals(teamId, memberId);
 	}
 
 	@Override
+	@Transactional
 	public Goal getGoal(int id) {
 		return goalDao.getGoal(id);
 	}
