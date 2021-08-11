@@ -21,7 +21,7 @@ public class GoalServiceImpl implements GoalService {
 	@Transactional(readOnly = false)
 	public Goal addGoal(Goal goal) {
 		goal.setCreateDate(new Date());
-		int id = goalDao.insertGoal(goal);
+		int id = goalDao.insert(goal);
 		goal.setId(id);
 		
 		return goal;
@@ -32,7 +32,7 @@ public class GoalServiceImpl implements GoalService {
 	@Override
 	@Transactional
 	public List<Goal> getGoals(int teamId, int memberId) {
-		return goalDao.getGoals(teamId, memberId);
+		return goalDao.list(teamId, memberId);
 	}
 
 	@Override

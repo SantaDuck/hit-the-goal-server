@@ -32,13 +32,13 @@ public class GoalDao {
 	}
 	
 	// Create
-	public Integer insertGoal(Goal goal) {
+	public Integer insert(Goal goal) {
 		SqlParameterSource params = new BeanPropertySqlParameterSource(goal);
 		return insertAction.executeAndReturnKey(params).intValue();
 	}
 	
 	// Read
-	public List<Goal> getGoals(int teamId, int memberId) {
+	public List<Goal> list(int teamId, int memberId) {
 		// 모든 Goal 가져오기
 		if(teamId == 0 && memberId == 0) {
 			return jdbc.query(SELECT_ALL_GOALS, rowMapper);
