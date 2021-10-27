@@ -82,10 +82,17 @@ public class GoalDao {
 		params.put("id", id);
 		params.put("contents", contents);
 		
-		// 여기가 뭔가 안됨
 		int result = jdbc.update(UPDATE_GOAL, params);
-		System.out.println("result: " + result);
 		
+		return result;
+	}
+
+	// delete
+	public int delete(int id) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("id", id);
+		
+		int result = jdbc.update(DELETE_GOAL, params);
 		return result;
 	}
 }

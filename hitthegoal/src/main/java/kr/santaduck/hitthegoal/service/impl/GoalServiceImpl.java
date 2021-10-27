@@ -51,8 +51,7 @@ public class GoalServiceImpl implements GoalService {
 	// Delete
 	@Override
 	public int deleteGoal(int id) {
-		// TODO Auto-generated method stub
-		return 0;
+		return goalDao.delete(id);
 	}
 
 }

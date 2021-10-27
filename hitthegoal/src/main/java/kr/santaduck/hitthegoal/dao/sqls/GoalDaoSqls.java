@@ -25,4 +25,6 @@ public class GoalDaoSqls {
 			"UPDATE goal SET contents=:contents WHERE id=:id";
 	
 	// Delete
+	public static final String DELETE_GOAL =
+			"DELETE FROM goal WHERE id=:id";
 }
