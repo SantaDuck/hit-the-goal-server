@@ -12,6 +12,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,7 +22,7 @@ import kr.santaduck.hitthegoal.dto.Goal;
 import kr.santaduck.hitthegoal.service.GoalService;
 
 @RestController
-public class ApiController {
+public class GoalApiController {
 
 	@Autowired
 	GoalService goalService;
@@ -62,5 +63,17 @@ public class ApiController {
 		} catch (EmptyResultDataAccessException e) {
 			return Collections.emptyMap();
 		}
+	}
+	
+	// update
+	@PutMapping(path = "/goals/{id}")
+	public Map<String, Object> update(@PathVariable("id") int id, @RequestBody HashMap<String, Object> body) {
+
+		goalService.updateGoal(id, (String) body.get("contents"));
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("result", goalService.getGoal(id));
+		
+		return map;
 	}
 }

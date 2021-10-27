@@ -1,5 +1,6 @@
 package kr.santaduck.hitthegoal.dao;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -73,5 +74,18 @@ public class GoalDao {
 		Map<String, Integer> params = new HashMap<>();
 		params.put("id", id);
 		return jdbc.queryForObject(SELECT_GOAL_BY_ID, params, rowMapper);
+	}
+	
+	// update
+	public int update(int id, String contents) {			
+		Map<String, Object> params = new HashMap<>();
+		params.put("id", id);
+		params.put("contents", contents);
+		
+		// 여기가 뭔가 안됨
+		int result = jdbc.update(UPDATE_GOAL, params);
+		System.out.println("result: " + result);
+		
+		return result;
 	}
 }

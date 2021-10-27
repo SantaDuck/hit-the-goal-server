@@ -26,7 +26,6 @@ public class GoalServiceImpl implements GoalService {
 		
 		return goal;
 	}
-	
 
 	// Read
 	@Override
@@ -44,9 +43,8 @@ public class GoalServiceImpl implements GoalService {
 	
 	// Update
 	@Override
-	public int updateGoal(int id, Goal goal) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updateGoal(int id, String contents) {
+		return goalDao.update(id, contents);
 	}
 
 	

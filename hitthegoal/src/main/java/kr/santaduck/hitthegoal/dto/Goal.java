@@ -10,6 +10,8 @@ public class Goal {
 	private String contents;
 	private Boolean isAchived;
 	private Date createDate;
+	private Date modifyDate;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -52,6 +54,11 @@ public class Goal {
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
-	
+	public Date getModifyDate() {
+		return modifyDate;
+	}
+	public void setModifyDate(Date modifyDate) {
+		this.modifyDate = modifyDate;
+	}
 	
 }

@@ -14,7 +14,7 @@ public interface GoalService {
 	public Goal getGoal(int id);
 	
 	// Update
-	public int updateGoal(int id, Goal goal);
+	public int updateGoal(int id, String contents);
 	
 	// Delete
 	public int deleteGoal(int id);
