@@ -10,6 +10,9 @@ public interface TeamService {
 	public Team addTeam(Team team);	
 	
 	// Read
+	public List<Team> getTeams();
+	public List<Team> getTeams(int memberId);
+	public Team getTeam(int id);
 	
 	// Update
 	

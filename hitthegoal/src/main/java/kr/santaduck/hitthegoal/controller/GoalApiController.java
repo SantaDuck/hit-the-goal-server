@@ -29,7 +29,7 @@ public class GoalApiController {
 	GoalService goalService;
 	
 	// Create
-	@PostMapping(path = "/goal")
+	@PostMapping(path = "/goals")
 	public Goal write(@RequestBody Goal goal, HttpServletRequest request) {
 		
 		Goal resultGoal = goalService.addGoal(goal);

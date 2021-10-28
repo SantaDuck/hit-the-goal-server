@@ -1,5 +1,9 @@
 package kr.santaduck.hitthegoal.dao;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -11,6 +15,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import kr.santaduck.hitthegoal.dto.Team;
+import static kr.santaduck.hitthegoal.dao.sqls.TeamDaoSqls.*;
 
 @Repository
 public class TeamDao {
@@ -29,6 +34,26 @@ public class TeamDao {
 	public int insert(Team team) {
 		SqlParameterSource params = new BeanPropertySqlParameterSource(team);
 		return insertAction.executeAndReturnKey(params).intValue();
+	}
+
+	
+	// Read
+	public List<Team> findAll() {
+		return jdbc.query(SELECT_ALL_TEAMS, rowMapper);
+	}
+
+	public List<Team> findByMemberId(int memberId) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("member_id", memberId);
+		
+		return jdbc.query(SELECT_TEAMS_BY_MEMBER_ID, params, rowMapper);
+	}
+
+	public Team findById(int id) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("id", id);
+		
+		return jdbc.queryForObject(SELECT_TEAM_BY_ID, params, rowMapper);
 	}
 
 }

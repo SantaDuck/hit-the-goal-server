@@ -1,6 +1,7 @@
 package kr.santaduck.hitthegoal.service.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,22 @@ public class TeamServiceImpl implements TeamService {
 		team.setId(id);
 		
 		return team;
+	}
+
+	// Read
+	@Override
+	public List<Team> getTeams() {
+		return teamDao.findAll();
+	}
+
+	@Override
+	public List<Team> getTeams(int memberId) {
+		return teamDao.findByMemberId(memberId);
+	}
+
+	@Override
+	public Team getTeam(int id) {
+		return teamDao.findById(id);
 	}
 
 }
