@@ -15,6 +15,8 @@ public interface TeamService {
 	public Team getTeam(int id);
 	
 	// Update
+	public int updateTeamName(int id, String teamName);
+	public int updateKing(int id, int oldKing, int newKing);
 	
 	// Delete
 }

@@ -14,6 +14,7 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
+import kr.santaduck.hitthegoal.dao.sqls.TeamDaoSqls;
 import kr.santaduck.hitthegoal.dto.Team;
 import static kr.santaduck.hitthegoal.dao.sqls.TeamDaoSqls.*;
 
@@ -54,6 +55,25 @@ public class TeamDao {
 		params.put("id", id);
 		
 		return jdbc.queryForObject(SELECT_TEAM_BY_ID, params, rowMapper);
+	}
+	
+	
+	// Update
+	public int updateTeamName(int id, String teamName) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("id", id);
+		params.put("team_name", teamName);
+		
+		return jdbc.update(UPDATE_TEAM_NAME, params);
+	}
+
+	public int updateKing(int id, int newKing) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("id", id);
+		params.put("new_king", newKing);
+		
+		jdbc.update(UPDATE_KING, params);
+		return 0;
 	}
 
 }

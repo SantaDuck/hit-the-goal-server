@@ -11,4 +11,12 @@ public class TeamDaoSqls {
 
 	public final static String SELECT_TEAM_BY_ID =
 			"SELECT id, team_name, king, quantity, create_date FROM team WHERE id=:id";
+	
+	
+	// Update
+	public final static String UPDATE_TEAM_NAME =
+			"UPDATE team SET team_name=:team_name WHERE id=:id";
+	
+	public final static String UPDATE_KING =
+			"UPDATE team SET king=:new_king WHERE id=:id";
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.santaduck.hitthegoal.dao.TeamDao;
+import kr.santaduck.hitthegoal.dao.TeamMemberDao;
 import kr.santaduck.hitthegoal.dto.Team;
 import kr.santaduck.hitthegoal.service.TeamService;
 
@@ -16,6 +17,8 @@ public class TeamServiceImpl implements TeamService {
 
 	@Autowired
 	TeamDao teamDao;
+	@Autowired
+	TeamMemberDao teamMemberDao;
 	
 	@Override
 	@Transactional
@@ -41,6 +44,20 @@ public class TeamServiceImpl implements TeamService {
 	@Override
 	public Team getTeam(int id) {
 		return teamDao.findById(id);
+	}
+
+	// Update
+	@Override
+	public int updateTeamName(int id, String teamName) {
+		return teamDao.updateTeamName(id, teamName);
+	}
+
+	@Override
+	public int updateKing(int id, int oldKing, int newKing) {
+		int result1 = teamDao.updateKing(id, newKing);
+		int result2 = teamMemberDao.updateKingDao(id, oldKing, newKing);
+		
+		return result1*10 + result2;
 	}
 
 }

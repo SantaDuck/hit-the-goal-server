@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -67,7 +68,7 @@ public class GoalApiController {
 	}
 	
 	// update
-	@PutMapping(path = "/goals/{id}")
+	@PatchMapping(path = "/goals/{id}")
 	public Map<String, Object> update(@PathVariable("id") int id, @RequestBody HashMap<String, Object> body) {
 
 		goalService.updateGoal(id, (String) body.get("contents"));
