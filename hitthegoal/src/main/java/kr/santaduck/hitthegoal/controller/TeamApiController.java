@@ -71,22 +71,12 @@ public class TeamApiController {
 	
 	// Update
 	@PatchMapping(path = "/teams/{id}")
-	public Map<String, Object> updateTeamName(@PathVariable("id") int id, @RequestBody HashMap<String, Object> body) {
-		teamService.updateTeamName(id, (String) body.get("team_name"));
+	public Map<String, Object> updateTeam(@PathVariable("id") int id, @RequestBody Team team) {
+		teamService.updateTeam(id, team);
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("result", teamService.getTeam(id));
 		
 		return map;
-	}
-	// Patch 메소드 하나로 partly 필드의 수정을 요청해도 다 처리할 수 있어야 함.
-	@PatchMapping(path = "/teams/{id}")
-	public Map<String, Object> updateKing(@PathVariable("id") int id, @RequestBody HashMap<String, Object> body) {
-		teamService.updateKing(id, (int) body.get("old_king"), (int) body.get("new_king"));
-		
-		Map<String, Object> map = new HashMap<>();
-		map.put("result", teamService.getTeam(id));
-		
-		return map;	
 	}
 }

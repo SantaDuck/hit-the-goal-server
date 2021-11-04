@@ -59,21 +59,12 @@ public class TeamDao {
 	
 	
 	// Update
-	public int updateTeamName(int id, String teamName) {
+	public int updateTeam(int id, Team team) {
 		Map<String, Object> params = new HashMap<>();
 		params.put("id", id);
-		params.put("team_name", teamName);
+		params.put("team_name", team.getTeamName());
 		
 		return jdbc.update(UPDATE_TEAM_NAME, params);
-	}
-
-	public int updateKing(int id, int newKing) {
-		Map<String, Object> params = new HashMap<>();
-		params.put("id", id);
-		params.put("new_king", newKing);
-		
-		jdbc.update(UPDATE_KING, params);
-		return 0;
 	}
 
 }
